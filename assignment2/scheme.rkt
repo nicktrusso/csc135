@@ -1,15 +1,22 @@
 ;takes two integers, and returns a 4-digit integer constructed of the leftmost 2 digits of the
 ;first input, and the rightmost 2 digits of the second input.       
 (define(buildLR i1 i2)
-  (cond((not(twoDigit i1)) -1)
-       ((not(twoDigit i2)) -1)
-       (else #t)))
+  (cond((not(isTwoDigit i1)) -1)
+       ((not(isTwoDigit i2)) -1)
+       ;((> 0 i1)(abs i1))
+       ;((> 0 i2)(abs i2))
+       (else(cons(firstDigits i1)(lastDigits i2)))))
 
 
 ;Helper function
-(define(twoDigit n)
-  (or(and (> n 9) (< n 100))
-       (and (< n -9) (> n -100))))
+(define(isTwoDigit n)
+  (or (> n 9)(< n -9))) 
+
+(define(firstDigits n)
+  (cond((> n 10)(firstDigits (/ n 10)))
+       ((< n 10)(floor(* n 10)))))
+
+(define(lastDigits n)(modulo n 100))
 
 ;listMins takes two equal-length lists of numbers, and returns a single list 
 ;consisting of the smaller ofthe two lists, position by position.
