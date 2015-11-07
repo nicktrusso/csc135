@@ -4,8 +4,7 @@
   (cond((null? i1)'())
        ((not(isTwoDigit i1)) -1)
        ((not(isTwoDigit i2)) -1)
-       (else((firstDigits i1)))
-       ))
+       (else(cons(firstDigits i1)(cons(lastDigits i2)'())))))
        
 
 ;Helper function
@@ -18,8 +17,6 @@
        ((< n 10)(floor(* n 10)))))
 
 (define(lastDigits n)(modulo (abs n) 100))
-
-(define(lastDigits n)(modulo n 100))
 
 ;listMins takes two equal-length lists of numbers, and returns a single list 
 ;consisting of the smaller ofthe two lists, position by position.
