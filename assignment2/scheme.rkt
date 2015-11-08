@@ -1,3 +1,9 @@
+;***********************************
+;* Programmed by: Nick Trusso      *
+;* 10/30/15                        *
+;***********************************
+
+
 ;****************** PROBLEM A *****************************
 ;takes two integers, and returns a 4-digit integer constructed of the leftmost 2 digits of the
 ;first input, and the rightmost 2 digits of the second input.       
