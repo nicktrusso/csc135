@@ -7,17 +7,6 @@
        ((not(isTwoDigit i2)) -1)
        (else(+ (* 100 (firstDigits i1))(lastDigits i2)))))
        
-;Helper functions
-(define(isTwoDigit n)
-  (or (> n 9)(< n -9))) 
-
-(define(firstDigits n)
-  (cond((> 0 n)(firstDigits (abs n)))
-       ((> n 10)(firstDigits (/ n 10)))
-       ((< n 10)(floor(* n 10)))))
-
-(define(lastDigits n)(modulo (abs n) 100))
-
 ;****************** PROBLEM B **************************** 
 ;listMins takes two equal-length lists of numbers, and returns a single list 
 ;consisting of the smaller ofthe two lists, position by position.
@@ -27,7 +16,10 @@
        (else(cons(car l1)(listMins(cdr l1)(cdr l2))))))
        
 ;****************** PROBLEM C *****************************
-
+;takes a list of atoms and returns the unwinded version of the list.
+(define (unwind lst)
+ (if (null? lst) '()
+    (cons (getMidIndex lst) (unwind (remove (getMidIndex lst) lst)))))
  
 ;****************** PROBLEM D *****************************       
 ;takes two Boolean functions F and G, and a list L. It returns the number 1 if
@@ -40,16 +32,6 @@
        ((>(boolCount G L)(boolCount F L)) 2)
        (else 0)))
 
-;helper functions
-(define(boolCount F L)
-  (cond((null? L) 0)
-       ((F (car L))(+ 1(boolCount F (cdr L))))
-       (else (boolCount F (cdr L)))))
-                       
-;testing
-(define(isNeg n)(< n 0))
-(define(isEven n)(= 0 (modulo n 2)))
-
 ;****************** PROBLEM E *****************************
 ;takes a list of integers, possibly including nested lists, and returns the total number
 ;of integers in the entire nested list.
@@ -59,4 +41,33 @@
        (else(+ 1(getNestedCount(cdr l))))))
        
 ;****************** PROBLEM F *****************************
+;takes as input an integer N. It then builds and returns a "cutter"
+;function based on N. 
 
+
+
+;****************** HELPER FUNCTIONS **********************
+(define(isTwoDigit n)
+  (or (> n 9)(< n -9))) 
+
+(define(firstDigits n)
+  (cond((> 0 n)(firstDigits (abs n)))
+       ((> n 10)(firstDigits (/ n 10)))
+       ((< n 10)(floor(* n 10)))))
+
+(define(lastDigits n)(modulo (abs n) 100))
+
+(define(boolCount F L)
+  (cond((null? L) 0)
+       ((F (car L))(+ 1(boolCount F (cdr L))))
+       (else (boolCount F (cdr L)))))
+
+(define(isNeg n)(< n 0))
+
+(define(isEven n)(= 0 (modulo n 2)))
+
+(define (isOdd n)(not (isEven n)))
+
+(define (getMidIndex lst)
+	(if (isEven (length lst)) (list-ref lst (- (quotient (length lst) 2) 1)) 
+		(list-ref lst (quotient (length lst) 2))))
