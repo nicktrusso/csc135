@@ -4,7 +4,7 @@
   (cond((null? i1)'())
        ((not(isTwoDigit i1)) -1)
        ((not(isTwoDigit i2)) -1)
-       (else(cons(firstDigits i1)(cons(lastDigits i2)'())))))
+       (else(+ (* 100 (firstDigits i1))(lastDigits i2)))))
        
 
 ;Helper function
