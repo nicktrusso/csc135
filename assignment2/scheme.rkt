@@ -46,11 +46,6 @@
        ((list? (car l))(+ (getNestedCount(car l))(getNestedCount(cdr l))))
        (else(+ 1(getNestedCount(cdr l))))))
        
-;****************** PROBLEM F *****************************
-;takes as input an integer N. It then builds and returns a "cutter"
-;function based on N. 
-
-
 
 ;****************** HELPER FUNCTIONS **********************
 (define(isTwoDigit n)
