@@ -1,4 +1,4 @@
-# csc135
+# csc135 - Computing Theory and Programming Languages
 <ul>
   <li>Assignment 1</li>
   <ul>
